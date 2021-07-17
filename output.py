@@ -43,10 +43,17 @@ for dir in os.listdir('./output'):
 					for line in lines:
 						out[dir][place]['offset'][int(file_name.split('.')[0]) - 1].append(line.split('|'))
 
-output = json.dumps(out, indent=4)
-output = output.replace('    ', '	')
-output = re.sub(r'\[\n\s+"', '["', output)
-output = re.sub(r'",\s+', '", ', output)
-output = re.sub(r'"\s+\]', '"]', output)
+def stringify(out):
+	output = json.dumps(out, indent=4)
+	output = output.replace('    ', '	')
+	output = re.sub(r'\[\n\s+"', '["', output)
+	output = re.sub(r'",\s+', '", ', output)
+	return re.sub(r'"\s+\]', '"]', output)
 
-open('./output/output.json', 'w').write(output)
+open('./output/output.json', 'w').write(stringify(out))
+
+for dir in os.listdir('./output'):
+	if (re.match(r'\d{4}', dir)):
+			open(f'./output/{dir}/{dir}.json', 'w').write(stringify(out[dir]))
+			for place in places:
+				open(f'./output/{dir}/{place}/{place}.json', 'w').write(stringify(out[dir][place]))
