@@ -22,7 +22,7 @@ for dir in os.listdir(INPUT_FOLDER):
 
 			i = 1
 			for page in tqdm(file, f'  Scraping Timing ({place.capitalize()} - {dir})'):
-				out = open(f'./pages/{dir}/{place}/timing/page-{i}.txt', 'wb')
+				out = open(f'./pages/{dir}/{place}/timing/page-{i:02}.txt', 'wb')
 				i += 1
 				out.write(page.getText().encode('utf-8'))
 
@@ -34,4 +34,4 @@ for dir in os.listdir(INPUT_FOLDER):
 				pageObj = pdfReader.getPage(i - 1)
 				pages_text = pageObj.extractText()
 
-				open(f'./pages/{dir}/{place}/offset/page-{i}.txt', 'w', encoding='utf-8').write(' '.join(pages_text.split('\n')))
+				open(f'./pages/{dir}/{place}/offset/page-{i:02}.txt', 'w', encoding='utf-8').write(' '.join(pages_text.split('\n')))

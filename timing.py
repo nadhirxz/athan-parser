@@ -13,9 +13,9 @@ for dir in os.listdir('./pages'):
 			Path(f'./output/{dir}/{place}/timing').mkdir(parents=True, exist_ok=True)
 		
 			for i in tqdm(range(3, 15), f'  Parsing Timing ({place.capitalize()} - {dir})'):
-				output = open(f'./output/{dir}/{place}/timing/{i-2}.txt', 'w', encoding='utf-8')
+				output = open(f'./output/{dir}/{place}/timing/{i-2:02}.txt', 'w', encoding='utf-8')
 
-				file = open(f'./pages/{dir}/{place}/timing/page-{i}.txt', 'r', encoding='utf-8')
+				file = open(f'./pages/{dir}/{place}/timing/page-{i:02}.txt', 'r', encoding='utf-8')
 				text = file.read()
 
 				dates = re.finditer(r'((20\d{2}(\-|\/)(0?[1-9]|1[012])(\-|\/)(0[1-9]|[​12][0-9]|3[01]))|((0[1-9]|[​12][0-9]|3[01])(\-|\/)(0?[1-9]|1[012])(\-|\/)20\d{2}))', text)

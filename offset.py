@@ -14,9 +14,9 @@ for dir in os.listdir('./pages'):
 			Path(f'./output/{dir}/{place}/offset').mkdir(parents=True, exist_ok=True)
 
 			for i in tqdm(range(3, 15), f'  Parsing Offset ({place})'):
-				output = open(f'./output/{dir}/{place}/offset/{i-2}.txt', 'w', encoding='utf-8')
+				output = open(f'./output/{dir}/{place}/offset/{i-2:02}.txt', 'w', encoding='utf-8')
 
-				file = open(f'./pages/{dir}/{place}/offset/page-{i}.txt', 'r', encoding='utf-8')
+				file = open(f'./pages/{dir}/{place}/offset/page-{i:02}.txt', 'r', encoding='utf-8')
 
 				if place == 'adrar':
 					matches = tuple(re.finditer(r'(-?(\d+)\s{1,2}){96}', file.read()))
