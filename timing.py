@@ -32,6 +32,6 @@ for dir in os.listdir('./pages'):
 					if (len(times)):
 						for time in tuple(times):
 							line = line.replace(time.group(), f'|{time.group()}|')
-						l += '\n' + line.split('=====')[0].replace('| ', '|').replace('||', '|').replace('||', '|')[1:]
+						l += '\n' + (line.split('=====')[0].split(' ')[0] + '| ' + '-'.join(line.split('=====')[0].split(' ')[1].split('-')[1:])).replace('| ', '|').replace('||', '|').replace('||', '|')[1:]
 
 				output.write(l[1:])
